@@ -1,0 +1,368 @@
+<%- include('../partials/en/header') -%>
+
+
+<h1>Entry Form 2023</h1>
+
+<div class="chooseDiv">
+    <h3 id="choose-your-item">Please choose your item</h3>
+
+</div>
+<div id="ovrly"></div>
+<div class="row options-list">
+    <button id="cross">&cross;</button>
+    <h3>Choose your item</h3>
+    <div class="col-lg-6 afrikaansDiv">
+        <button class="form-button" id="voorbereid" onclick="addForm1()">Afrikaans Voorbereid</button> <br>
+        <button class="form-button" id="onvoorbereid" onclick="addForm2()">Afrikaans Onvoorbereid</button> <br>
+    </div>
+    <div class="col-lg-6 englishDiv">
+        <button class="form-button" id="prepared" onclick="addForm4()">English Prepared</button> <br>
+        <button class="form-button" id="unprepared" onclick="addForm5()">English Unprepared</button> <br>
+    </div>
+</div>
+
+<% newListItems.forEach(function(item) { %>
+
+<form action="/en/delete" method="post" class="participant-form">
+
+    <div class="item">
+
+
+        <table>
+            <tr>
+                <td><%=item.competition%></td>
+                <td><%=item.name%></td>
+                <td><%=item.surname%></td>
+                <td class="grade"><%=item.grade%></td>
+                <td><%=item.school%></td>
+                <td><%=item.province%></td>
+                <td><%=item.email%></td>
+                <td><%=item.cell%></td>
+                <td class="button">
+                    <input type="checkbox" name="checkbox" value="<%=item._id%>" onchange="this.form.submit()">
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</form>
+
+<% }); %>
+
+<br>
+<br>
+
+<div class="entry-form-div">
+
+    <form action="/en/entry" method="post" class="form-main" id="entry-form">
+
+        <div id="wrapper">
+            <input type="button" name="cancel-button" value="Cancel" class="button">
+            <button type="button" id="options-button">Choose</button>
+            <button type="submit" class="entry-form-button">Add</button>
+            <button type="button" id="options-button">Next</button>
+
+        </div>
+
+    </form>
+
+
+    <!-- <button type="submit" id="add-row" form="entry-form">+</button> -->
+
+</div>
+
+<script>
+    //adds options list
+    window.$("#options-button").click(function () { //by clicking in choose icon
+        "use strict";
+        window.$("#ovrly").show();
+        window.$(".options-list").show();
+    });
+
+    //removes option list
+    window.$("#ovrly").click(function () { //by clicking on backgroound
+        "use strict";
+        window.$("#ovrly").hide();
+        window.$(".options-list").hide();
+        window.$(".options-list").css("top", "-310px");
+    });
+    window.$("#cross").click(function () { //by clicking on the cross
+        "use strict";
+        window.$("#ovrly").hide();
+        window.$(".options-list").hide();
+        window.$(".options-list").css("top", "-310px");
+    });
+    window.$('.form-button').click(function () { //by choosing one of the options on the buttons
+        "use strict";
+        window.$("#ovrly").hide();
+        window.$(".options-list").hide();
+        window.$(".options-list").css("top", "-310px");
+    });
+
+    function addForm1() {
+        $('#wrapper').prepend('\
+            <div class="wrapper">\
+                <input type="text" name="competitionName" class="entry-form" value="(AFR) - VOORBEREID" disabled >\
+                <input type="text" name="participantName" class="entry-form" placeholder="Name">\
+                <input type="text" name="participantSurname" class="entry-form" placeholder="Surname">\
+                <select name="participantGrade" class="entry-form gradePicker">\
+                    <option value="" disabled>Grade</option>\
+                    <option value="1">Grade 1</option>\
+                    <option value="2">Grade 2</option>\
+                    <option value="3">Grade 3</option>\
+                    <option value="4">Grade 4</option>\
+                    <option value="5">Grade 5</option>\
+                    <option value="6">Grade 6</option>\
+                    <option value="7">Grade 7</option>\
+                    <option value="8">Grade 8</option>\
+                    <option value="9">Grade 9</option>\
+                    <option value="10">Grade 10</option>\
+                    <option value="11">Grade 11</option>\
+                    <option value="12">Grade 12</option>\
+                </select>\
+                <input type="text" name="participantSchool" class="entry-form" placeholder="School">\
+                <select name="participantProvence" class="entry-form" placeholder="Province">\
+                    <option value="" disabled>Province</option>\
+                    <option value="Gauteng">Gauteng</option>\
+                    <option value="Eastern Cape">Eastern Cape (Online)</option>\
+                    <option value="Free State">Free State (Online)</option>\
+                    <option value="KwaZulu-Natal">KwaZulu-Natal (Online)</option>\
+                    <option value="Limpopo">Limpopo (Online)</option>\
+                    <option value="Mpumalanga">Mpumalanga (Online)</option>\
+                    <option value="Northern Cape">Northern Cape (Online)</option>\
+                    <option value="North West">North West (Online)</option>\
+                    <option value="Western Cape">Western Cape (Online)</option>\
+                </select>\
+                <input type="email" name="participantEmail" class="entry-form" placeholder="Email">\
+                <input type="text" name="participantNumber" class="entry-form participantNumber"\
+                    placeholder="Cellphone Number"></div>\
+        </div>')
+    }
+
+    function addForm2() {
+        $('#wrapper').prepend('\
+            <div class="wrapper">\
+                <input type="text" name="competitionName" class="entry-form" value="(AFR) - ONVOORBEREID" disabled >\
+                <input type="text" name="participantName" class="entry-form" placeholder="Name">\
+                <input type="text" name="participantSurname" class="entry-form" placeholder="Surname">\
+                <select name="participantGrade" class="entry-form gradePicker">\
+                    <option value="" disabled>Grade</option>\
+                    <option value="1">Grade 1</option>\
+                    <option value="2">Grade 2</option>\
+                    <option value="3">Grade 3</option>\
+                    <option value="4">Grade 4</option>\
+                    <option value="5">Grade 5</option>\
+                    <option value="6">Grade 6</option>\
+                    <option value="7">Grade 7</option>\
+                    <option value="8">Grade 8</option>\
+                    <option value="9">Grade 9</option>\
+                    <option value="10">Grade 10</option>\
+                    <option value="11">Grade 11</option>\
+                    <option value="12">Grade 12</option>\
+                </select>\
+                <input type="text" name="participantSchool" class="entry-form" placeholder="School">\
+                <select name="participantProvence" class="entry-form" placeholder="Province">\
+                    <option value="" disabled>Province</option>\
+                    <option value="Gauteng">Gauteng</option>\
+                    <option value="Eastern Cape">Eastern Cape (Online)</option>\
+                    <option value="Free State">Free State (Online)</option>\
+                    <option value="KwaZulu-Natal">KwaZulu-Natal (Online)</option>\
+                    <option value="Limpopo">Limpopo (Online)</option>\
+                    <option value="Mpumalanga">Mpumalanga (Online)</option>\
+                    <option value="Northern Cape">Northern Cape (Online)</option>\
+                    <option value="North West">North West (Online)</option>\
+                    <option value="Western Cape">Western Cape (Online)</option>\
+                </select>\
+                <input type="email" name="participantEmail" class="entry-form" placeholder="Email">\
+                <input type="text" name="participantNumber" class="entry-form participantNumber"\
+                    placeholder="Cellphone Number"></div>\
+        </div>')
+    }
+
+   
+
+    function addForm4() {
+        $('#wrapper').prepend('\
+            <div class="wrapper">\
+                <input type="text" name="competitionName" class="entry-form" value="(ENG) - PREPARED" disabled >\
+                <input type="text" name="participantName" class="entry-form" placeholder="Name">\
+                <input type="text" name="participantSurname" class="entry-form" placeholder="Surname">\
+                <select name="participantGrade" class="entry-form gradePicker">\
+                    <option value="" disabled>Grade</option>\
+                    <option value="1">Grade 1</option>\
+                    <option value="2">Grade 2</option>\
+                    <option value="3">Grade 3</option>\
+                    <option value="4">Grade 4</option>\
+                    <option value="5">Grade 5</option>\
+                    <option value="6">Grade 6</option>\
+                    <option value="7">Grade 7</option>\
+                    <option value="8">Grade 8</option>\
+                    <option value="9">Grade 9</option>\
+                    <option value="10">Grade 10</option>\
+                    <option value="11">Grade 11</option>\
+                    <option value="12">Grade 12</option>\
+                </select>\
+                <input type="text" name="participantSchool" class="entry-form" placeholder="School">\
+                <select name="participantProvence" class="entry-form" placeholder="Province">\
+                    <option value="" disabled>Province</option>\
+                    <option value="Gauteng">Gauteng</option>\
+                    <option value="Eastern Cape">Eastern Cape (Online)</option>\
+                    <option value="Free State">Free State (Online)</option>\
+                    <option value="KwaZulu-Natal">KwaZulu-Natal (Online)</option>\
+                    <option value="Limpopo">Limpopo (Online)</option>\
+                    <option value="Mpumalanga">Mpumalanga (Online)</option>\
+                    <option value="Northern Cape">Northern Cape (Online)</option>\
+                    <option value="North West">North West (Online)</option>\
+                    <option value="Western Cape">Western Cape (Online)</option>\
+                </select>\
+                <input type="email" name="participantEmail" class="entry-form" placeholder="Email">\
+                <input type="text" name="participantNumber" class="entry-form participantNumber"\
+                    placeholder="Cellphone Number"></div>\
+        </div>')
+    }
+
+    function addForm5() {
+        $('#wrapper').prepend('\
+            <div class="wrapper">\
+                <input type="text" name="competitionName" class="entry-form" value="(ENG) - UNPREPARED" disabled >\
+                <input type="text" name="participantName" class="entry-form" placeholder="Name">\
+                <input type="text" name="participantSurname" class="entry-form" placeholder="Surname">\
+                <select name="participantGrade" class="entry-form gradePicker">\
+                    <option value="" disabled>Grade</option>\
+                    <option value="1">Grade 1</option>\
+                    <option value="2">Grade 2</option>\
+                    <option value="3">Grade 3</option>\
+                    <option value="4">Grade 4</option>\
+                    <option value="5">Grade 5</option>\
+                    <option value="6">Grade 6</option>\
+                    <option value="7">Grade 7</option>\
+                    <option value="8">Grade 8</option>\
+                    <option value="9">Grade 9</option>\
+                    <option value="10">Grade 10</option>\
+                    <option value="11">Grade 11</option>\
+                    <option value="12">Grade 12</option>\
+                </select>\
+                <input type="text" name="participantSchool" class="entry-form" placeholder="School">\
+                <select name="participantProvence" class="entry-form" placeholder="Province">\
+                    <option value="" disabled>Province</option>\
+                    <option value="Gauteng">Gauteng</option>\
+                    <option value="Eastern Cape">Eastern Cape (Online)</option>\
+                    <option value="Free State">Free State (Online)</option>\
+                    <option value="KwaZulu-Natal">KwaZulu-Natal (Online)</option>\
+                    <option value="Limpopo">Limpopo (Online)</option>\
+                    <option value="Mpumalanga">Mpumalanga (Online)</option>\
+                    <option value="Northern Cape">Northern Cape (Online)</option>\
+                    <option value="North West">North West (Online)</option>\
+                    <option value="Western Cape">Western Cape (Online)</option>\
+                </select>\
+                <input type="email" name="participantEmail" class="entry-form" placeholder="Email">\
+                <input type="text" name="participantNumber" class="entry-form participantNumber"\
+                    placeholder="Cellphone Number"></div>\
+        </div>')
+    }
+
+   
+
+    // adds the dynamic form
+
+    // var i = 1;
+
+    // function addForm() {
+
+    //     if (i < Infinity) {
+
+    //         var wrapperDiv = document.createElement('div'); //creates div around each addition to the form
+    //         wrapperDiv.classList = 'wrapper' + i;
+    //         $('#wrapper').append(wrapperDiv);
+
+    //         var competitionName = document.createElement('input');
+    //         competitionName.type = 'text';
+    //         competitionName.name = 'competitionName' + i;
+    //         competitionName.disabled = true
+    //         competitionName.classList = 'entry-form';
+    //         $(".form-button").click(function () {
+    //             competitionName.value = this.innerHTML;
+    //         });
+    //         $('.wrapper' + i).append(competitionName);
+
+    //         var participantName = document.createElement('input');
+    //         participantName.type = 'text';
+    //         participantName.name = 'participantName' + i;
+    //         participantName.classList = 'entry-form';
+    //         participantName.placeholder = 'Name';
+    //         $('.wrapper' + i).append(participantName);
+
+    //         var participantSurname = document.createElement('input');
+    //         participantSurname.type = 'text';
+    //         participantSurname.name = 'participantSurname' + i;
+    //         participantSurname.classList = 'entry-form'
+    //         participantSurname.placeholder = 'Surname';
+    //         $('.wrapper' + i).append(participantSurname);
+
+    //         var participantGrade = document.createElement('select');
+    //         participantGrade.name = 'participantGrade' + i;
+    //         var gradeName = participantGrade.name;
+    //         participantGrade.classList = 'entry-form gradePicker';
+    //         $('.wrapper' + i).append(participantGrade);
+
+    //         var Gradelist = '\
+    //             <option value="" disabled selected>Grade</option>\
+    //             <option value="1">Grade 1</option>\
+    //             <option value="2">Grade 2</option>\
+    //             <option value="3">Grade 3</option>\
+    //             <option value="4">Grade 4</option>\
+    //             <option value="5">Grade 5</option>\
+    //             <option value="6">Grade 6</option>\
+    //             <option value="7">Grade 7</option>\
+    //             <option value="8">Grade 8</option>\
+    //             <option value="9">Grade 9</option>\
+    //             <option value="10">Grade 10</option>\
+    //             <option value="11">Grade 11</option>\
+    //             <option value="12">Grade 12</option>';
+    //         $('select[name$="participantGrade' + i + '"').append(Gradelist);
+
+    //         var participantSchool = document.createElement('input');
+    //         participantSchool.type = 'text';
+    //         participantSchool.name = 'participantSchool' + i;
+    //         participantSchool.classList = 'entry-form';
+    //         participantSchool.placeholder = 'School';
+    //         $('.wrapper' + i).append(participantSchool);
+
+    //         var participantProvence = document.createElement('input');
+    //         participantProvence.type = 'text';
+    //         participantProvence.name = 'participantProvence' + i;
+    //         participantProvence.classList = 'entry-form';
+    //         participantProvence.placeholder = 'Province';
+    //         $('.wrapper' + i).append(participantProvence);
+
+    //         var participantEmail = document.createElement('input');
+    //         participantEmail.type = 'email';
+    //         participantEmail.name = 'participantEmail' + i;
+    //         participantEmail.classList = 'entry-form';
+    //         participantEmail.placeholder = 'Email';
+    //         $('.wrapper' + i).append(participantEmail);
+
+    //         var participantNumber = document.createElement('input');
+    //         participantNumber.type = 'text';
+    //         participantNumber.name = 'participantNumber' + i;
+    //         participantNumber.classList = 'entry-form';
+    //         participantNumber.placeholder = 'Cellphone Number';
+    //         $('.wrapper' + i).append(participantNumber);
+
+    //         var removeButton = document.createElement('button'); //This removes one element
+    //         removeButton.type = 'button';
+    //         removeButton.classList = 'remove';
+    //         removeButton.innerHTML = '-';
+    //         removeButton.onclick = function () {
+    //             this.parentElement.remove();
+    //         }
+    //         $('.wrapper' + i).append(removeButton);
+
+    //         i++;
+    //     }
+    // }
+</script>
+
+
+<%- include('../partials/en/footer') -%>

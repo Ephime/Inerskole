@@ -1,0 +1,375 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #ECECEC;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+
+nav .Logo-image {
+    width: 18rem;
+    height: 18rem;
+    margin-top: 3rem;
+    margin-left: 1rem;
+    position: absolute;
+    transition: all linear .5s;
+}
+
+
+nav.fixed-nav .Logo-image{
+    width: 4rem;
+    height: 4rem;
+    position: static;
+    margin-top: 0;
+    margin-left: 0;
+
+}
+
+.dark-mode {
+    background-color: #0D0D0D;
+    color: #fff;
+}
+
+#color-mode {
+    text-decoration: none;
+    background-color: none;
+    border: none;
+}
+
+.navbar {
+    background-color: #444d62;
+    padding: 0;
+    padding-left: 1rem;
+    position: fixed;
+}
+
+.btn-outline-success {
+    border: none;
+}
+
+.span-line {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 1px;
+}
+
+#searchFaq {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    width: 30rem;
+    top: 4rem;
+    left: 37.9rem;
+    z-index: 200;
+    display: none;
+}
+
+#searchFaq li a {
+    border: 1px solid #ddd;
+    margin-top: -1px;
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+}
+
+#searchFaq li a:hover:not(.header) {
+    background-color: #eee;
+}
+
+@media screen and (min-width: 780px) {
+    .form-inline .form-control {
+        display: inline-block;
+        width: 30rem;
+        vertical-align: middle;
+    }
+
+    h1 {
+        padding-top: 1rem;
+        margin-bottom: 3rem;
+        font-size: 60pt;
+    }
+
+    .light-dark-img {
+        width: 6rem;
+        height: 3rem;
+        position: absolute;
+        right: 0rem;
+        top: 0rem;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .light-dark-img {
+        width: 8rem;
+        height: 4rem;
+        position: absolute;
+        right: -1rem;
+        top: 0rem;
+    }
+
+    h1 {
+        font-size: 20pt;
+    }
+
+}
+
+/* Background image at top of page */
+
+.background {
+    margin-bottom: 1rem;
+    padding-bottom: 50%;
+    background-image: url('../images/Background.png');
+    background-repeat: no-repeat;
+    background-size: 100% 110%;
+    z-index: -100;
+}
+
+#Background-title-id {
+    position: absolute;
+    margin-top: 34rem;
+    margin-left: 15rem;
+    font-size: 30pt;
+    color: #fff;
+}
+
+#association-statement  {
+    position: absolute;
+    margin-top: 18rem;
+    margin-left: 40%;
+    color: #d1aa66;
+    font-size: 32pt;
+}
+
+/*Home Page */
+
+.paragraph-content {
+    font-size: 20pt;
+    padding-bottom: 5rem;
+    margin-bottom: 5rem;
+    text-align: justify;
+}
+
+
+.nationals {
+    margin: auto 10px;
+    font-size: 45pt;
+
+}
+
+/* Buttons, anchors adn hr */
+
+button, .button{
+    background-color: #444d62 !important;
+    color: #fff !important;
+    border: none !important;
+    width: 120px;
+    height: 45px;
+}
+
+button:focus, .button:focus {
+    outline: none;
+}
+
+.page-break {
+    /*This is the hr tags */
+    width: 50%;
+    margin: 0 auto;
+}
+
+a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+a:hover,
+a:active,
+button:hover, .button:hover {
+    color: #d1aa66 !important;
+    text-decoration: none;
+}
+
+
+
+/* Contact page content with some global variables */
+
+textarea {
+    width: 625px;
+    background-color: #444d62;
+    color: #fff;
+    left: -100px;
+    top: 5px;
+    position: relative;
+}
+
+input::placeholder,
+select:hover,
+textarea::placeholder {
+    color: #d1aa66;
+    text-align: center;
+}
+
+.Contact-form::placeholder {
+    font-size: 18pt;
+}
+
+.contact-content {
+    text-align: left;
+}
+
+input,
+select {
+    background-color: #444d62;
+    color: #fff;
+    width: 300px;
+    text-align: center;
+    font-size: 18pt;
+    height: 50px;
+    margin: 10px;
+}
+
+
+
+/* Entry Form only */
+
+.entry-form {
+    font-size: 12pt;
+    width: 180px;
+    height: 40px;
+    margin: 0.3%;
+    z-index: 100;
+    display: inline;
+}
+
+.entry-form::placeholder,.entry-form select option {font-size: 12pt;}
+
+.entry-form-div {
+    /* display: none; */
+    z-index: 200;
+    position: static;
+    width: 100%;
+}
+
+.darker-background {
+    background-color: #000;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    opacity: 0.7;
+    z-index: 11;
+    display: none;
+}
+
+.form-button {width: 10rem;}
+
+.bg-colour {background-color: #fff;}
+
+.remove {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    text-align: center;
+}
+
+.gradePicker {width: 100px;}
+
+.participantNumber{width: 150px;}
+
+.numberTyper {width: 150px;}
+
+#ovrly{
+    background-color: #000;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	opacity: 0.7;
+}
+
+.options-list{
+    background-color: #ececec;
+	width: 30%;
+	margin: auto;
+	border: 3px solid #d1aa66;
+	padding: 80px;
+	/* text-align: center; */
+	position: relative;
+	top: -310px;
+}
+
+#ovrly, .options-list{display: none;}
+
+#cross{
+	position: absolute;
+    left: 94%;
+    top: 0px;
+    color: #cc2e2e;
+	font-size: 18;
+	font-weight: bold;
+	background-color: transparent;
+	border: 0;
+}
+
+table{
+    font-size: 12pt;
+    padding: 0;
+    margin: 0 2%;
+}
+td:not(.button){
+    width: 15rem;
+    padding: 0;
+    margin: 0;
+}
+
+td.grade{
+    width: 5rem;
+}
+
+.participant-form:nth-child(odd){
+    background-color:#ddd;
+}
+
+.inputButton{
+    width: 22px;
+    height: 22px;
+    border-radius: 100%;
+    
+}
+
+
+
+
+/* Footer only */
+
+ol {
+    list-style: none;
+    list-style-type: none;
+}
+
+footer {
+    padding: 10% 10% 0 10%;
+    margin: 5rem 5rem 1rem 5rem;
+}
+
+.follow-content {
+    display: block;
+}
+
+.social-icon {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}

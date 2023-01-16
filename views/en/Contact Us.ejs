@@ -1,0 +1,118 @@
+<%- include('../partials/en/header') -%>
+
+
+
+<form action="/" method="POST">
+
+    <fieldset>
+
+            <h1>Contact Us</h1>
+
+
+        <input type="text" placeholder="name" class="Contact-form">
+        <input type="email" placeholder="email" class="Contact-form">
+        <select name="text" class="Contact-form">
+            <option value="Grade 1">Grade 1</option>
+            <option value="Grade 2">Grade 2</option>
+            <option value="Grade 3">Grade 3</option>
+            <Option value="Grade 4">Grade 4</Option>
+            <Option value="Grade 5">Grade 5</Option>
+            <Option value="Grade 6">Grade 6</Option>
+            <Option value="Grade 7">Grade 7</Option>
+            <Option value="Grade 8">Grade 8</Option>
+            <Option value="Grade 9">Grade 9</Option>
+            <Option value="Grade 10">Grade 10</Option>
+            <Option value="Grade 11">Grade 11</Option>
+            <Option value="Grade 12">Grade 12</Option>
+        </select>
+        <textarea name="textarea" cols="30" rows="15" placeholder="Please type message here"
+            class="Contact-form"></textarea>
+        <button type="submit">Send</button>
+
+
+</form>
+
+
+
+
+<div class="row">
+    <div class="row" style="
+    position: absolute;
+    top: 70rem;
+    left: 60rem;
+    text-align: justify;">
+        <div class="col-lg-12">
+            <ol class="contact-content" style="line-height: 30px;">
+                <li>0795117802</li>
+                <li>0824576169</li>
+                <li>0722046649</li>
+                <li>interskoleredenaars@gmail.com</li>
+                <li>
+                    <a href="https://www.facebook.com/InterskoleRedenaars" target="_blank" rel="noopener noreferrer">
+                        <img src="../social icons/facebook.png" alt="Follow us on Facebook" class="social-icon">
+                    </a>
+                </li>
+                <li>
+                    <a href="tel:0795117802">
+                        <img src="../social icons/whatsapp.png" alt="Contact us on WhatApp" class="social-icon">
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:INTERSKOLEREDENAARS@GMAIL.COM">
+                        <img src="../social icons/email.png" alt="Send us an email" class="social-icon">
+                    </a>
+                </li>
+            </ol>
+
+        </div>
+
+    </div>
+    </fieldset>
+
+    <footer>
+
+        <hr>
+        <p>© Copyright 2012 - 2022 Interskole Redenaars Liga | All Rights Reserved </p>
+
+        <!--Biography
+    WhatsApp icon (light mode): <a href="https://www.flaticon.com/free-icons/whatsapp" title="whatsapp icons">Whatsapp icons created by Freepik - Flaticon</a>
+    WhatsApp icon (dark mode): <a href="https://www.flaticon.com/free-icons/whatsapp" title="whatsapp icons">Whatsapp icons created by Freepik - Flaticon</a>
+    Facebook icon (light mode): <a href="https://www.flaticon.com/free-icons/facebook" title="facebook icons">Facebook icons created by Freepik - Flaticon</a>
+    Facebook icon (dark mode): <a href="https://www.flaticon.com/free-icons/facebook" title="facebook icons">Facebook icons created by Freepik - Flaticon</a>
+    Email icon (light mode): <a href="https://www.flaticon.com/free-icons/email" title="email icons">Email icons created by Freepik - Flaticon</a>
+    Email icon (dark mode): <a href="https://www.flaticon.com/free-icons/mail" title="mail icons">Mail icons created by Freepik - Flaticon</a>
+
+    -->
+
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('nav').addClass('fixed-nav');
+                } else {
+                    $('nav').removeClass('fixed-nav');
+                }
+            });
+        });
+    </script>
+
+    </body>
+
+    </html>

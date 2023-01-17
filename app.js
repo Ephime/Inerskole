@@ -192,14 +192,14 @@ app.get('/', function (req, res) {
     res.render("afr/home", {
         currentTitle: 'Tuis',
         currentPageTitle: "Tuis",
-        currentPageName: '/'
+        currentPageName: 'main'
     });
 });
-app.get('/en/home', (req, res) => {
+app.get('/en/main', (req, res) => {
     res.render('en/home', {
         currentTitle: 'Home',
-        currentPageTitle: 'Tuis',
-        currentPageName: 'en/home'
+        currentPageTitle: 'Home',
+        currentPageName: ''
     });
 })
 
@@ -210,10 +210,10 @@ app.get('/entry', function (req, res) {
         if (!err) {
 
             res.render("afr/Entry_form", {
-                currentTitle: 'Inskrywings form',
+                currentTitle: 'Inskrywingsvorm',
                 newListItems: foundItems,
-                currentPageTitle: 'Inskrywings form',
-                currentPageName: 'Entry_form'
+                currentPageTitle: 'Inskrywingsvorm',
+                currentPageName: 'entry'
             });
         }
     });
@@ -258,7 +258,7 @@ app.get('/en/entry', (req, res) => {
                 currentTitle: 'Entry form',
                 newListItems: foundItems,
                 currentPageTitle: 'Entry Form',
-                currentPageName: 'Entry_form'
+                currentPageName: 'entry'
             });
         }
     });
@@ -556,7 +556,7 @@ app.get('/info', function (req, res) {
     res.render('afr/Competition info', {
         currentTitle: 'Kompetisie Inligting',
         currentPageTitle: 'Kompetisie Inligting',
-        currentPageName: 'Competition info'
+        currentPageName: 'info'
     });
 });
 
@@ -564,15 +564,15 @@ app.get('/en/info', function (req, res) {
     res.render('en/Competition info', {
         currentTitle: 'Competition Info',
         currentPageTitle: 'Competition Info',
-        currentPageName: 'Competition info'
+        currentPageName: 'info'
     });
 });
 
 app.get('/contact-us', function (req, res) {
-    res.render('Contact Us', {
-        currentTitle: 'Contact Form',
-        currentPageTitle: 'Contact Form',
-        currentPageName: 'Contact Us'
+    res.render('afr/Contact Us', {
+        currentTitle: 'Kontak Form',
+        currentPageTitle: 'Kontak Form',
+        currentPageName: 'contact-us'
     });
 });
 
@@ -580,7 +580,7 @@ app.get('/en/contact-us', function (req, res) {
     res.render('en/Contact Us', {
         currentTitle: 'Contact Form',
         currentPageTitle: 'Contact Form',
-        currentPageName: 'Contact Us'
+        currentPageName: 'contact-us'
     });
 });
 

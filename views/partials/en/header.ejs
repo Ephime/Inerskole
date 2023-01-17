@@ -29,6 +29,7 @@
 
     <!--Yoco payment-->
     <script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
+</head>
 
 <body>
 
@@ -47,7 +48,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/en/home">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/en/main">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -94,12 +95,12 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">English</a>
-                            <a class="dropdown-item" href="<%=currentPageName%>">Afrikaans</a>
+                            <a class="dropdown-item" href="/<%=currentPageName%>">Afrikaans</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <button id="color-mode" onclick="colorMode()"><img src="../images/light-mode.png" alt="light-bulp"
-                                class="light-dark-img"></button>
+                        <button id="color-mode" onclick="colorMode()"><img src="../images/light-mode.png"
+                                alt="light-bulp" class="light-dark-img"></button>
                     </li>
                 </ul>
             </div>

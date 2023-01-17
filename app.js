@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios')
 const mongoose = require('mongoose');
+const http = require('https');
 mongoose.set('strictQuery', true);
-
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -206,6 +206,16 @@ app.get('/en/main', (req, res) => {
 
 app.get('/entry', function (req, res) {
 
+    const url = 'https://api.payfast.co.za/process';
+
+    http.get(url, (response) => {
+        console.log(response.statusCode);
+
+        response.on('data', (data) => {
+            paymentData = JSON.parse(data);
+        })
+    });
+
     Candidate.find({}, (err, foundItems) => {
 
         if (!err) {
@@ -219,6 +229,14 @@ app.get('/entry', function (req, res) {
         }
     });
 
+});
+
+app.post('/entryTest', (req, res) => {
+    console.log('This is working so far!')
+});
+
+app.get('/:personFormArea', (req, res) => {
+    const paramName = req.params.personFormArea;
 });
 
 app.post('/entry', (req, res) => {

@@ -1,0 +1,25 @@
+Currently the website is in two languages, Englsih and Afrikaans. All files under 'afr' directories are the Afrikaans versions. The 'en' directories are teh English versions.
+In the header files the language for each page can be swtiched. A dynamic links has been placed that is decided in the app.js file under the currentPageName title.
+
+Currentyl the biggest proble the webiste faces is making a dynamic form that exists out of 6 options:
+	The first 4:
+		1. (AFR) - Voorbereid
+		2. (AFR) - Onvoorbereid
+		3. (ENG) - Prepared
+		4. (ENG) - Unprepared
+These 4 are under the /entry and /en/entry directories. They generate one entry at a time. Each entry also needs to have a price of R240.00
+	The last 2:
+		1. (AFR) - Spanne
+		2. (ENG) - Teams
+These 2 are under the /team adn /en/team directories. They generate 4 entries at a time. Each entry needs to have a price of R550.00
+
+The ideal would be if these entries can be dynamically generated adn parsed under the same directory.
+What also needs to happen is that each entry needs to have a price associated that adds up and then get's paid before finally being saved to the database.
+The two payment gateways (that are somewhat added already but not fully functiona) are Payfast and Yoco.
+After an entry has been filled in, a review page should appear to allow the user to decide to cancel, edit or continue to payment.
+When the review page is viewed, all those entries needs to be viewed on the server side so that it can be manually added if paymnet arrangements are made.
+If a user cancels their payment, their entries should be moved to a cancel form/collection in the database.
+
+The current database that's being used is mongoose, it uses a database called Candidates, with two collections:
+		1. candidate
+		2. teams

@@ -77,6 +77,7 @@
 
     <!-- Create a pay button that will open the popup-->
     <button id="checkout-button">Pay</button>
+    <p class="success-error"></p>
 
 </div>
 
@@ -92,18 +93,30 @@
         yoco.showPopup({
             amountInCents: 2799,
             currency: 'ZAR',
-            name: 'Your Store or Product',
-            description: 'Awesome description',
-            callback: function (result) {
-                // This function returns a token that your server can use to capture a payment
-                if (result.error) {
-                    const errorMessage = result.error.message;
-                    alert("error occured: " + errorMessage);
+            name: 'Entries',
+            callback: respone => {
+                if (respone.error) {
+                    $('.success-error').html(respone.error.message);
                 } else {
-                    alert("card successfully tokenised: " + result.id);
+                    fetch('/payment', {
+                        method : 'post',
+                        headers : {
+                            'Content-Type' : 'application/json'
+                        },
+                        body: JSON.stringify({token: respone.id})
+                    })
+                    .then(result => result.json())
+                    .then(data => {
+                        if(data.errorCode) {
+                            $('.success-error').html(data.displayMessage)
+                        } else {
+                            $('.success-error').html('Payment successfull')
+                        }
+                    })
+                    .catch(error => {
+                        $('.success-error').html(error.message)
+                    })
                 }
-                // In a real integration - you would now pass this chargeToken back to your
-                // server along with the order/basket that the customer has purchased.
             }
         })
     });

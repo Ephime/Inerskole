@@ -623,30 +623,30 @@ app.get('/admin', function (req, res) {
     res.render('admin');
 });
 
-// Anonymous test key. Replace with your key.
-const SECRET_KEY = 'sk_test_e16d2c26gezaRKl906f46349f6f1';
 
-axios.post(
-  'https://online.yoco.com/v1/charges/',
-  {
-    token: 'tok_test_DjaqoUgmzwYkwesr3euMxyUV4g',
-    amountInCents: 25000,
-    currency: 'ZAR',
-  },
-  {
-    headers: {
-      'X-Auth-Secret-Key': SECRET_KEY,
-    },
-  },
-)
-.then(res => {
-  // res.status will contain the HTTP status code
-  // res.data will contain the response body
-})
-.catch(error => {
-  // handle errors
+app.post('/payment', (req, res) => {
+    // Anonymous test key. Replace with your key.
+    const SECRET_KEY = 'sk_test_e16d2c26gezaRKl906f46349f6f1';
+
+    axios.post('https://online.yoco.com/v1/charges/', {
+                token: req.body.token,
+                amountInCents: 25000,
+                currency: 'ZAR',
+            }, {
+                headers: {
+                    'X-Auth-Secret-Key': SECRET_KEY,
+                },
+            },
+        )
+        .then(response => {
+            res.send(response.data);
+        })
+        .catch(error => {
+            res.send(error.response.data);
+        })
 })
 
-app.listen(process.env.PORT || 3000, function () {
+
+app.listen(process.env.PORT || 3000, () => {
     console.log('App is running on port 3000');
 });

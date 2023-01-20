@@ -29,6 +29,11 @@
 
     <!--Yoco payment-->
     <script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -48,10 +53,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/en/main">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" id="page-title page-title" onclick="activeGlow1()" href="/en/main">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle page-title" id=" page-title2" onclick="activeGlow2()" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Entry Form
                     </a>
@@ -61,13 +66,13 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/en/info">Competition Info</a>
+                    <a class="nav-link page-title" id="page-title3"  onclick="activeGlow3()" href="/en/info">Competition Info</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/en/results">Results</a>
+                    <a class="nav-link page-title" id="page-title4" onclick="activeGlow4()" href="/en/results">Results</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/en/contact-us">Contact Us</a>
+                    <a class="nav-link page-title" id="page-title5" onclick="activeGlow5()" href="/en/contact-us">Contact Us</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 mx-auto" method="get">
@@ -107,7 +112,8 @@
         </div>
     </nav>
 
-    <div class="background">
-        <p id="Background-title-id">Proudly in association with WITS School of Law</p>
+    <div class="enBackground">
+        <p id="Background-title-id"> PROUDLY  IN  ASSOCIATION  WITH 
+            <span id="Background-title-id-span"> WITS  UNIVERSITY | SCHOOL  OF  LAW</span></p>
         <p id='association-statement'><%=currentPageTitle%></p>
     </div>

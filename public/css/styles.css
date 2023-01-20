@@ -11,7 +11,22 @@ body {
     overflow-x: hidden;
 }
 
+.main {
+    color: #242958;
+    font-size: 18pt;
+}
+
+
+h1 {
+    font-family: 'Playfair Display';
+    font-weight: 600;
+}
+
 /* Navbar */
+
+.glow {
+    color: #d1aa66;
+}
 
 nav .Logo-image {
     width: 18rem;
@@ -23,7 +38,7 @@ nav .Logo-image {
 }
 
 
-nav.fixed-nav .Logo-image{
+nav.fixed-nav .Logo-image {
     width: 4rem;
     height: 4rem;
     position: static;
@@ -136,15 +151,51 @@ nav.fixed-nav .Logo-image{
     z-index: -100;
 }
 
+.enBackground {
+    margin-bottom: 1rem;
+    padding-bottom: 50%;
+    background-image: url('../images/enBackground.png');
+    background-repeat: no-repeat;
+    background-size: 100% 110%;
+    z-index: -100;
+}
+
 #Background-title-id {
     position: absolute;
-    margin-top: 34rem;
+    margin-top: 42rem;
     margin-left: 15rem;
-    font-size: 30pt;
+    font-size: 15pt;
     color: #fff;
 }
 
-#association-statement  {
+#Background-title-id::before {
+    content: " ";
+    height: 0.125rem;
+    width: 15rem;
+    background: #fff;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: -30%;
+}
+
+#Background-title-id::after {
+    content: " ";
+    height: 0.125rem;
+    width: 25rem;
+    background: #fff;
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: -50%;
+}
+
+#Background-title-id-span {
+    color: #d1aa66;
+    font-size: 25pt;
+}
+
+#association-statement {
     position: absolute;
     margin-top: 18rem;
     margin-left: 40%;
@@ -154,13 +205,10 @@ nav.fixed-nav .Logo-image{
 
 /*Home Page */
 
-.paragraph-content {
-    font-size: 20pt;
-    padding-bottom: 5rem;
-    margin-bottom: 5rem;
-    text-align: justify;
+.twelve-excellence {
+    width: 15rem;
+    height: 15rem;
 }
-
 
 .nationals {
     margin: auto 10px;
@@ -168,9 +216,15 @@ nav.fixed-nav .Logo-image{
 
 }
 
+.excellent-logo-img {
+    width: 40rem;
+    height: 10rem;
+}
+
 /* Buttons, anchors adn hr */
 
-button, .button{
+button,
+.button {
     background-color: #444d62 !important;
     color: #fff !important;
     border: none !important;
@@ -178,7 +232,8 @@ button, .button{
     height: 45px;
 }
 
-button:focus, .button:focus {
+button:focus,
+.button:focus {
     outline: none;
 }
 
@@ -195,7 +250,8 @@ a {
 
 a:hover,
 a:active,
-button:hover, .button:hover {
+button:hover,
+.button:hover {
     color: #d1aa66 !important;
     text-decoration: none;
 }
@@ -252,7 +308,10 @@ select {
     display: inline;
 }
 
-.entry-form::placeholder,.entry-form select option {font-size: 12pt;}
+.entry-form::placeholder,
+.entry-form select option {
+    font-size: 12pt;
+}
 
 .entry-form-div {
     /* display: none; */
@@ -272,9 +331,13 @@ select {
     display: none;
 }
 
-.form-button {width: 10rem;}
+.form-button {
+    width: 10rem;
+}
 
-.bg-colour {background-color: #fff;}
+.bg-colour {
+    background-color: #fff;
+}
 
 .remove {
     width: 20px;
@@ -284,69 +347,79 @@ select {
     text-align: center;
 }
 
-.gradePicker {width: 100px;}
+.gradePicker {
+    width: 100px;
+}
 
-.participantNumber{width: 150px;}
+.participantNumber {
+    width: 150px;
+}
 
-.numberTyper {width: 150px;}
+.numberTyper {
+    width: 150px;
+}
 
-#ovrly{
+#ovrly {
     background-color: #000;
-	height: 100%;
-	width: 100%;
-	position: fixed;
-	top: 0px;
-	opacity: 0.7;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    opacity: 0.7;
 }
 
-.options-list{
+.options-list {
     background-color: #ececec;
-	width: 30%;
-	margin: auto;
-	border: 3px solid #d1aa66;
-	padding: 80px;
-	/* text-align: center; */
-	position: relative;
-	top: -310px;
+    width: 30%;
+    margin: auto;
+    border: 3px solid #d1aa66;
+    padding: 80px;
+    /* text-align: center; */
+    position: relative;
+    top: -310px;
 }
 
-#ovrly, .options-list{display: none;}
+#ovrly,
+.options-list {
+    display: none;
+}
 
-#cross{
-	position: absolute;
+#cross {
+    position: absolute;
     left: 94%;
     top: 0px;
     color: #cc2e2e;
-	font-size: 18;
-	font-weight: bold;
-	background-color: transparent;
-	border: 0;
+    font-size: 18;
+    font-weight: bold;
+    background-color: transparent;
+    border: 0;
 }
 
-table{
+table {
     font-size: 12pt;
     padding: 0;
     margin: 0 2%;
 }
-td:not(.button){
+
+td:not(.button) {
     width: 15rem;
     padding: 0;
     margin: 0;
 }
 
-td.grade{
+td.grade {
     width: 5rem;
 }
 
-.participant-form:nth-child(odd){
-    background-color:#ddd;
+.participant-form:nth-child(odd) {
+    background-color: #ddd;
 }
 
-.inputButton{
+.inputButton {
     width: 22px;
     height: 22px;
     border-radius: 100%;
-    
+
 }
 
 

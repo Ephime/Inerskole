@@ -285,30 +285,34 @@ app.get('/en/entry', (req, res) => {
 
 app.post('/en/entry', (req, res) => {
 
+    const childEntries = req.body.childEntries;
 
-    const cName = req.body.competitionname;
-    const pName = req.body.participantName;
-    const pSurname = req.body.participantSurname;
-    const pGrade = req.body.participantGrade;
-    const pSchool = req.body.participantSchool;
-    const pEmail = req.body.participantEmail;
-    const pProvince = req.body.participantProvence;
-    const pNumber = req.body.participantNumber;
+    for (let i = 1; i <= childEntries; i++) {
 
-    const candidate = new Candidate({
+        const cName = req.body[`competitionName${i}`];
+        const pName = req.body[`participantName${i}`];
+        const pSurname = req.body[`participantSurname${i}`];
+        const pGrade = req.body[`participantGrade${i}`];
+        const pSchool = req.body[`participantSchool${i}`];
+        const pProvince = req.body[`participantProvince${i}`];
+        const pEmail = req.body[`participantEmail${i}`];
+        const pNumber = req.body[`participantNumber${i}`];
 
-        competition: cName,
-        name: pName,
-        surname: pSurname,
-        grade: pGrade,
-        school: pSchool,
-        province: pProvince,
-        email: pEmail,
-        cell: pNumber
-    });
+        const candidate = new Candidate({
+            competition: cName,
+            name: pName,
+            surname: pSurname,
+            grade: pGrade,
+            school: pSchool,
+            province: pProvince,
+            email: pEmail,
+            cell: pNumber
+        });
 
-    candidate.save();
-    res.redirect('/en/entry');
+        console.log(candidate);
+    }
+
+    // res.redirect('/en/entry');
 
 });
 
@@ -329,7 +333,7 @@ app.get('/teams', (req, res) => {
 
 })
 
-app.post('/teams', function (req, res) {
+app.post('/teams', (req, res) => {
 
     const cName1 = req.body.competitionName1;
     const pName1 = req.body.participantName1;
@@ -428,7 +432,7 @@ app.get('/en/teams', (req, res) => {
 
 })
 
-app.post('/en/teams', function (req, res) {
+app.post('/en/teams', (req, res) => {
 
     const cName1 = req.body.competitionName1;
     const pName1 = req.body.participantName1;
@@ -512,7 +516,7 @@ app.post('/en/teams', function (req, res) {
 
 });
 
-app.post('/deleteTeams', function (req, res) {
+app.post('/deleteTeams', (req, res) => {
     const checkedItemId = req.body.checkbox;
 
     Team.findByIdAndDelete(checkedItemId, (err) => {
@@ -526,7 +530,7 @@ app.post('/deleteTeams', function (req, res) {
     res.redirect('/teams');
 });
 
-app.post('/en/deleteTeams', function (req, res) {
+app.post('/en/deleteTeams',  (req, res) => {
     const checkedItemId = req.body.checkbox;
 
     Team.findByIdAndDelete(checkedItemId, (err) => {
@@ -629,15 +633,14 @@ app.post('/payment', (req, res) => {
     const SECRET_KEY = 'sk_test_e16d2c26gezaRKl906f46349f6f1';
 
     axios.post('https://online.yoco.com/v1/charges/', {
-                token: req.body.token,
-                amountInCents: 25000,
-                currency: 'ZAR',
-            }, {
-                headers: {
-                    'X-Auth-Secret-Key': SECRET_KEY,
-                },
+            token: req.body.token,
+            amountInCents: 25000,
+            currency: 'ZAR',
+        }, {
+            headers: {
+                'X-Auth-Secret-Key': SECRET_KEY,
             },
-        )
+        }, )
         .then(response => {
             res.send(response.data);
         })

@@ -231,59 +231,9 @@ app.get('/entry', function (req, res) {
 
 });
 
-app.post('/entryTest', (req, res) => {
-    console.log('This is working so far!')
-});
-
-app.get('/:personFormArea', (req, res) => {
-    const paramName = req.params.personFormArea;
-});
 
 app.post('/entry', (req, res) => {
 
-
-    const cName = req.body.competitionname;
-    const pName = req.body.participantName;
-    const pSurname = req.body.participantSurname;
-    const pGrade = req.body.participantGrade;
-    const pSchool = req.body.participantSchool;
-    const pEmail = req.body.participantEmail;
-    const pProvince = req.body.participantProvence;
-    const pNumber = req.body.participantNumber;
-
-    const candidate = new Candidate({
-
-        competition: cName,
-        name: pName,
-        surname: pSurname,
-        grade: pGrade,
-        school: pSchool,
-        province: pProvince,
-        email: pEmail,
-        cell: pNumber
-    });
-
-    candidate.save();
-    res.redirect('/entry');
-
-});
-
-app.get('/en/entry', (req, res) => {
-    Candidate.find({}, (err, foundItems) => {
-
-        if (!err) {
-
-            res.render("en/Entry_form", {
-                currentTitle: 'Entry form',
-                newListItems: foundItems,
-                currentPageTitle: 'Entry Form',
-                currentPageName: 'entry'
-            });
-        }
-    });
-})
-
-app.post('/en/entry', (req, res) => {
 
     const childEntries = req.body.childEntries;
 
@@ -312,7 +262,56 @@ app.post('/en/entry', (req, res) => {
         console.log(candidate);
     }
 
-    // res.redirect('/en/entry');
+    res.redirect('/entry');
+
+});
+
+app.get('/en/entry', (req, res) => {
+    Candidate.find({}, (err, foundItems) => {
+
+        if (!err) {
+
+            res.render("en/Entry_form", {
+                currentTitle: 'Entry form',
+                newListItems: foundItems,
+                currentPageTitle: 'Entry Form',
+                currentPageName: 'entry'
+            });
+        }
+    });
+})
+
+app.post('/en/entry', (req, res) => {
+
+    const childEntries = req.body.childEntries;
+    candidate = new Candidate({});
+
+    for (let i = 1; i <= childEntries; i=i+4) {
+
+        const cName = req.body[`competitionName${i}`];
+        const pName = req.body[`participantName${i}`];
+        const pSurname = req.body[`participantSurname${i}`];
+        const pGrade = req.body[`participantGrade${i}`];
+        const pSchool = req.body[`participantSchool${i}`];
+        const pProvince = req.body[`participantProvince${i}`];
+        const pEmail = req.body[`participantEmail${i}`];
+        const pNumber = req.body[`participantNumber${i}`];
+
+        const candidate = new Candidate.append({
+            competition: cName,
+            name: pName,
+            surname: pSurname,
+            grade: pGrade,
+            school: pSchool,
+            province: pProvince,
+            email: pEmail,
+            cell: pNumber
+        });
+
+        
+    }
+    console.log(candidate);
+    res.redirect('/en/entry');
 
 });
 
@@ -335,84 +334,87 @@ app.get('/teams', (req, res) => {
 
 app.post('/teams', (req, res) => {
 
-    const cName1 = req.body.competitionName1;
-    const pName1 = req.body.participantName1;
-    const pSurname1 = req.body.participantSurname1;
-    const pGrade1 = req.body.participantGrade1;
-    const pSchool1 = req.body.participantSchool1;
-    const pEmail1 = req.body.participantEmail1;
-    const pProvince1 = req.body.participantProvence1;
-    const pNumber1 = req.body.participantNumber1;
+    const childEntries = req.body.childEntries;
 
-    const cName2 = req.body.competitionname2;
-    const pName2 = req.body.participantName2;
-    const pSurname2 = req.body.participantSurname2;
-    const pGrade2 = req.body.participantGrade2;
-    const pSchool2 = req.body.participantSchool2;
-    const pEmail2 = req.body.participantEmail2;
-    const pProvince2 = req.body.participantProvence2;
-    const pNumber2 = req.body.participantNumber2;
+    for (let i = 1; i < childEntries; i++) {
 
-    const cName3 = req.body.competitionname3;
-    const pName3 = req.body.participantName3;
-    const pSurname3 = req.body.participantSurname3;
-    const pGrade3 = req.body.participantGrade3;
-    const pSchool3 = req.body.participantSchool3;
-    const pEmail3 = req.body.participantEmail3;
-    const pProvince3 = req.body.participantProvence3;
-    const pNumber3 = req.body.participantNumber3;
+        const cName1 = req.body[`competitionName1${i}`];
+        const pName1 = req.body[`participantName1${i}`];
+        const pSurname1 = req.body[`participantSurname1${i}`];
+        const pGrade1 = req.body[`participantGrade1${i}`];
+        const pSchool1 = req.body[`participantSchool1${i}`];
+        const pEmail1 = req.body[`participantEmail1${i}`];
+        const pProvince1 = req.body[`participantProvence1${i}`];
+        const pNumber1 = req.body[`participantNumber1${i}`];
 
-    const cName4 = req.body.competitionname4;
-    const pName4 = req.body.participantName4;
-    const pSurname4 = req.body.participantSurname4;
-    const pGrade4 = req.body.participantGrade4;
-    const pSchool4 = req.body.participantSchool4;
-    const pEmail4 = req.body.participantEmail4;
-    const pProvince4 = req.body.participantProvence4;
-    const pNumber4 = req.body.participantNumber4;
+        const cName2 = req.body[`competitionname2${i}`];
+        const pName2 = req.body[`participantName2${i}`];
+        const pSurname2 = req.body[`participantSurname2${i}`];
+        const pGrade2 = req.body[`participantGrade2${i}`];
+        const pSchool2 = req.body[`participantSchool2${i}`];
+        const pEmail2 = req.body[`participantEmail2${i}`];
+        const pProvince2 = req.body[`participantProvence2${i}`];
+        const pNumber2 = req.body[`participantNumber2${i}`];
 
-    const team = new Team({
-        competition1: cName1,
-        name1: pName1,
-        surname1: pSurname1,
-        grade1: pGrade1,
-        school1: pSchool1,
-        email1: pEmail1,
-        province1: pProvince1,
-        pNumber1: pNumber1,
+        const cName3 = req.body[`competitionname3${i}`];
+        const pName3 = req.body[`participantName3${i}`];
+        const pSurname3 = req.body[`participantSurname3${i}`];
+        const pGrade3 = req.body[`participantGrade3${i}`];
+        const pSchool3 = req.body[`participantSchool3${i}`];
+        const pEmail3 = req.body[`participantEmail3${i}`];
+        const pProvince3 = req.body[`participantProvence3${i}`];
+        const pNumber3 = req.body[`participantNumber3${i}`];
 
-        competition2: cName2,
-        name2: pName2,
-        surname2: pSurname2,
-        grade2: pGrade2,
-        school2: pSchool2,
-        email2: pEmail2,
-        province2: pProvince2,
-        pNumber2: pNumber2,
+        const cName4 = req.body[`competitionname4${i}`];
+        const pName4 = req.body[`participantName4${i}`];
+        const pSurname4 = req.body[`participantSurname4${i}`];
+        const pGrade4 = req.body[`participantGrade4${i}`];
+        const pSchool4 = req.body[`participantSchool4${i}`];
+        const pEmail4 = req.body[`participantEmail4${i}`];
+        const pProvince4 = req.body[`participantProvence4${i}`];
+        const pNumber4 = req.body[`participantNumber4${i}`];
 
-        competition3: cName3,
-        name3: pName3,
-        surname3: pSurname3,
-        grade3: pGrade3,
-        school3: pSchool3,
-        email3: pEmail3,
-        province3: pProvince3,
-        pNumber3: pNumber3,
+        const team = new Team({
+            competition1: cName1,
+            name1: pName1,
+            surname1: pSurname1,
+            grade1: pGrade1,
+            school1: pSchool1,
+            email1: pEmail1,
+            province1: pProvince1,
+            pNumber1: pNumber1,
 
-        competition4: cName4,
-        nam43: pName4,
-        surname4: pSurname4,
-        grade4: pGrade4,
-        school4: pSchool4,
-        email4: pEmail4,
-        province4: pProvince4,
-        pNumber4: pNumber4,
+            competition2: cName2,
+            name2: pName2,
+            surname2: pSurname2,
+            grade2: pGrade2,
+            school2: pSchool2,
+            email2: pEmail2,
+            province2: pProvince2,
+            pNumber2: pNumber2,
 
-    });
+            competition3: cName3,
+            name3: pName3,
+            surname3: pSurname3,
+            grade3: pGrade3,
+            school3: pSchool3,
+            email3: pEmail3,
+            province3: pProvince3,
+            pNumber3: pNumber3,
 
+            competition4: cName4,
+            nam43: pName4,
+            surname4: pSurname4,
+            grade4: pGrade4,
+            school4: pSchool4,
+            email4: pEmail4,
+            province4: pProvince4,
+            pNumber4: pNumber4,
 
+        });
 
-    team.save();
+        team.save();
+    }
     res.redirect('/teams');
 
 });
@@ -434,85 +436,88 @@ app.get('/en/teams', (req, res) => {
 
 app.post('/en/teams', (req, res) => {
 
-    const cName1 = req.body.competitionName1;
-    const pName1 = req.body.participantName1;
-    const pSurname1 = req.body.participantSurname1;
-    const pGrade1 = req.body.participantGrade1;
-    const pSchool1 = req.body.participantSchool1;
-    const pEmail1 = req.body.participantEmail1;
-    const pProvince1 = req.body.participantProvence1;
-    const pNumber1 = req.body.participantNumber1;
+    const childEntries = req.body.childEntries;
 
-    const cName2 = req.body.competitionname2;
-    const pName2 = req.body.participantName2;
-    const pSurname2 = req.body.participantSurname2;
-    const pGrade2 = req.body.participantGrade2;
-    const pSchool2 = req.body.participantSchool2;
-    const pEmail2 = req.body.participantEmail2;
-    const pProvince2 = req.body.participantProvence2;
-    const pNumber2 = req.body.participantNumber2;
+    for (let i = 1; i < childEntries; i++) {
 
-    const cName3 = req.body.competitionname3;
-    const pName3 = req.body.participantName3;
-    const pSurname3 = req.body.participantSurname3;
-    const pGrade3 = req.body.participantGrade3;
-    const pSchool3 = req.body.participantSchool3;
-    const pEmail3 = req.body.participantEmail3;
-    const pProvince3 = req.body.participantProvence3;
-    const pNumber3 = req.body.participantNumber3;
+        const cName1 = req.body[`competitionName1${i}`];
+        const pName1 = req.body[`participantName1${i}`];
+        const pSurname1 = req.body[`participantSurname1${i}`];
+        const pGrade1 = req.body[`participantGrade1${i}`];
+        const pSchool1 = req.body[`participantSchool1${i}`];
+        const pEmail1 = req.body[`participantEmail1${i}`];
+        const pProvince1 = req.body[`participantProvence1${i}`];
+        const pNumber1 = req.body[`participantNumber1${i}`];
 
-    const cName4 = req.body.competitionname4;
-    const pName4 = req.body.participantName4;
-    const pSurname4 = req.body.participantSurname4;
-    const pGrade4 = req.body.participantGrade4;
-    const pSchool4 = req.body.participantSchool4;
-    const pEmail4 = req.body.participantEmail4;
-    const pProvince4 = req.body.participantProvence4;
-    const pNumber4 = req.body.participantNumber4;
+        const cName2 = req.body[`competitionname2${i}`];
+        const pName2 = req.body[`participantName2${i}`];
+        const pSurname2 = req.body[`participantSurname2${i}`];
+        const pGrade2 = req.body[`participantGrade2${i}`];
+        const pSchool2 = req.body[`participantSchool2${i}`];
+        const pEmail2 = req.body[`participantEmail2${i}`];
+        const pProvince2 = req.body[`participantProvence2${i}`];
+        const pNumber2 = req.body[`participantNumber2${i}`];
 
-    const team = new Team({
-        competition1: cName1,
-        name1: pName1,
-        surname1: pSurname1,
-        grade1: pGrade1,
-        school1: pSchool1,
-        email1: pEmail1,
-        province1: pProvince1,
-        pNumber1: pNumber1,
+        const cName3 = req.body[`competitionname3${i}`];
+        const pName3 = req.body[`participantName3${i}`];
+        const pSurname3 = req.body[`participantSurname3${i}`];
+        const pGrade3 = req.body[`participantGrade3${i}`];
+        const pSchool3 = req.body[`participantSchool3${i}`];
+        const pEmail3 = req.body[`participantEmail3${i}`];
+        const pProvince3 = req.body[`participantProvence3${i}`];
+        const pNumber3 = req.body[`participantNumber3${i}`];
 
-        competition2: cName2,
-        name2: pName2,
-        surname2: pSurname2,
-        grade2: pGrade2,
-        school2: pSchool2,
-        email2: pEmail2,
-        province2: pProvince2,
-        pNumber2: pNumber2,
+        const cName4 = req.body[`competitionname4${i}`];
+        const pName4 = req.body[`participantName4${i}`];
+        const pSurname4 = req.body[`participantSurname4${i}`];
+        const pGrade4 = req.body[`participantGrade4${i}`];
+        const pSchool4 = req.body[`participantSchool4${i}`];
+        const pEmail4 = req.body[`participantEmail4${i}`];
+        const pProvince4 = req.body[`participantProvence4${i}`];
+        const pNumber4 = req.body[`participantNumber4${i}`];
 
-        competition3: cName3,
-        name3: pName3,
-        surname3: pSurname3,
-        grade3: pGrade3,
-        school3: pSchool3,
-        email3: pEmail3,
-        province3: pProvince3,
-        pNumber3: pNumber3,
+        const team = new Team({
+            competition1: cName1,
+            name1: pName1,
+            surname1: pSurname1,
+            grade1: pGrade1,
+            school1: pSchool1,
+            email1: pEmail1,
+            province1: pProvince1,
+            pNumber1: pNumber1,
 
-        competition4: cName4,
-        nam43: pName4,
-        surname4: pSurname4,
-        grade4: pGrade4,
-        school4: pSchool4,
-        email4: pEmail4,
-        province4: pProvince4,
-        pNumber4: pNumber4,
+            competition2: cName2,
+            name2: pName2,
+            surname2: pSurname2,
+            grade2: pGrade2,
+            school2: pSchool2,
+            email2: pEmail2,
+            province2: pProvince2,
+            pNumber2: pNumber2,
 
-    });
+            competition3: cName3,
+            name3: pName3,
+            surname3: pSurname3,
+            grade3: pGrade3,
+            school3: pSchool3,
+            email3: pEmail3,
+            province3: pProvince3,
+            pNumber3: pNumber3,
 
+            competition4: cName4,
+            nam43: pName4,
+            surname4: pSurname4,
+            grade4: pGrade4,
+            school4: pSchool4,
+            email4: pEmail4,
+            province4: pProvince4,
+            pNumber4: pNumber4,
 
+        });
 
-    team.save();
-    res.redirect('/en/teams');
+        team.save();
+    }
+    res.redirect('/teams');
 
 });
 
@@ -530,7 +535,7 @@ app.post('/deleteTeams', (req, res) => {
     res.redirect('/teams');
 });
 
-app.post('/en/deleteTeams',  (req, res) => {
+app.post('/en/deleteTeams', (req, res) => {
     const checkedItemId = req.body.checkbox;
 
     Team.findByIdAndDelete(checkedItemId, (err) => {

@@ -81,39 +81,40 @@
 
 
 <script>
+
+    //Popup for Yoco
     var yoco = new window.YocoSDK({
-        publicKey: 'pk_test_ed3c54a6gOol69qa7f45',
+        publicKey: 'pk_test_a48286f218VYOvz4d334',
     });
-    var checkoutButton = document.querySelector('#checkout-button');
-    checkoutButton.addEventListener('click', function () {
+    $('#checkout-button').click(() => {
         yoco.showPopup({
-            amountInCents: 2799,
+            amountInCents: 24000,
             currency: 'ZAR',
             name: 'Entries',
-            callback: respone => {
-                if (respone.error) {
-                    $('.success-error').html(respone.error.message);
+            callback: response => {
+                if (response.error) {
+                    $('.success-error').html(response.error.message);
                 } else {
                     fetch('/payment', {
-                            method: 'post',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                token: respone.id
-                            })
-                        })
-                        .then(result => result.json())
-                        .then(data => {
-                            if (data.errorCode) {
-                                $('.success-error').html(data.displayMessage)
-                            } else {
-                                $('.success-error').html('Payment successfull')
-                            }
-                        })
-                        .catch(error => {
-                            $('.success-error').html(error.message)
-                        })
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({token: response.id})
+                    })
+                    .then(result => result.json())
+                    .then(data => {
+                        if(data.errorCode) {
+                            console.log(data);
+                            $('.success-error').html(data.displayMessage);
+                        } else {
+                            console.log(data)
+                            $('.success-error').html('Payment successful! Check your emails for your invoie');
+                        }  
+                    })
+                    .catch(error => {
+                        $('.success-error').html(error.message)
+                    })
                 }
             }
         })

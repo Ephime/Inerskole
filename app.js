@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios')
+const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const http = require('https');
+const { response } = require('express');
 mongoose.set('strictQuery', true);
 
 const app = express();
@@ -23,198 +25,78 @@ mongoose.connect('mongodb://127.0.0.1:27017/Candidates', {
         console.log(err);
     })
 
-const candidateSchema = {
-    competition: String,
-    name: {
-        type: String,
-        required: [true, "Please fill in this field!"]
-    },
-    surname: {
-        type: String,
-        required: [true, "Please fill in this field!"]
-    },
-    grade: {
-        type: Number,
-        required: [true, "Please fill in this field!"]
-    },
-    school: {
-        type: String,
-        required: [true, "Please fill in this field!"]
-    },
-    province: {
-        type: String,
-        required: [true, "Please fill in this field!"]
-    },
-    email: {
-        type: String,
-        required: [true, "Please fill in this field!"]
-    },
-    cell: {
-        type: String,
-    }
+const candidateSchema = { //This is the schema for entries in the individual entry form
+    competition : String,
+    name : String,
+    surname : String,
+    grade : Number,
+    school : String,
+    province : String,
+    email : String,
+    cell : String,
 }
 const Candidate = mongoose.model('Candidate', candidateSchema);
 
 
-const teamShema = {
-    competition1: {
-        type: String,
-        required: false
-    },
-    name1: {
-        type: String,
-        required: false
-    },
-    surname1: {
-        type: String,
-        required: false
-    },
-    grade1: {
-        type: Number,
-        required: false
-    },
-    school1: {
-        type: String,
-        required: false
-    },
-    province1: {
-        type: String,
-        required: false
-    },
-    email1: {
-        type: String,
-        required: false
-    },
-    cell1: {
-        type: String,
-    },
+const teamShema = { //This used in the app.post(/teams..) and app.post(/en/teams...) 
+    competition1: {type: String,required: false},
+    name1: {type: String,required: false},
+    surname1: {type: String,required: false},
+    grade1: {type: Number,required: false},
+    school1: {type: String,required: false},
+    province1: {type: String,required: false},
+    email1: {type: String,required: false},
+    cell1: {type: String,},
 
-    competition2: {
-        type: String,
-        required: false
-    },
-    name2: {
-        type: String,
-        required: false
-    },
-    surname2: {
-        type: String,
-        required: false
-    },
-    grade2: {
-        type: Number,
-        required: false
-    },
-    school2: {
-        type: String,
-        required: false
-    },
-    province2: {
-        type: String,
-        required: false
-    },
-    email2: {
-        type: String,
-        required: false
-    },
-    cell2: {
-        type: String,
-    },
+    competition2: {type: String,required: false},
+    name2: {type: String,required: false},
+    surname2: {type: String,required: false},
+    grade2: {type: Number,required: false},
+    school2: {type: String,required: false},
+    province2: {type: String,required: false},
+    email2: {type: String,required: false},
+    cell2: {type: String,},
 
-    competition3: {
-        type: String,
-        required: false
-    },
-    name3: {
-        type: String,
-        required: false
-    },
-    surname3: {
-        type: String,
-        required: false
-    },
-    grade3: {
-        type: Number,
-        required: false
-    },
-    school3: {
-        type: String,
-        required: false
-    },
-    province3: {
-        type: String,
-        required: false
-    },
-    email3: {
-        type: String,
-        required: false
-    },
-    cell3: {
-        type: String,
-    },
+    competition3: {type: String,required: false},
+    name3: {type: String,required: false},
+    surname3: {type: String,required: false},
+    grade3: {type: Number,required: false},
+    school3: {type: String,required: false},
+    province3: {type: String,required: false},
+    email3: {type: String,required: false},
+    cell3: {type: String,},
 
-    competition4: {
-        type: String,
-        required: false
-    },
-    name4: {
-        type: String,
-        required: false
-    },
-    surname4: {
-        type: String,
-        required: false
-    },
-    grade4: {
-        type: Number,
-        required: false
-    },
-    school4: {
-        type: String,
-        required: false
-    },
-    province4: {
-        type: String,
-        required: false
-    },
-    email4: {
-        type: String,
-        required: false
-    },
-    cell4: {
-        type: String,
-    }
+    competition4: {type: String,required: false},
+    name4: {type: String,required: false},
+    surname4: {type: String,required: false},
+    grade4: {type: Number,required: false},
+    school4: {type: String,required: false},
+    province4: {type: String,required: false},
+    email4: {type: String,required: false},
+    cell4: {type: String,}
 }
 const Team = mongoose.model('Team', teamShema);
 
-
+//The website consists of two languages, so all files are doubled with simply the lamguage being changed. The root route is Afrikaans (afr), 
+//thus whenever an entry repeats but with an en/ preceding it, it will be the same, 
+//but containing English (e.g. post('/entry) and post('/en/entry))
 
 app.get('/', function (req, res) {
     res.render("afr/home", {
-        currentTitle: 'Tuis',
-        currentPageTitle: "Tuis",
-        currentPageName: 'main'
+        currentTitle: 'Tuis', //This is for the html <title> tag 
+        currentPageTitle: "TUIS", //This is a text that appears on the image beneath the nav-bar (in header.ejs) (id="association-statement")
+        currentPageName: 'main' //This is used for dynamically linking between the en and afr pages in the header.ejs files
     });
 });
 app.get('/en/main', (req, res) => {
     res.render('en/home', {
         currentTitle: 'Home',
-        currentPageTitle: 'Home',
+        currentPageTitle: 'HOME',
         currentPageName: ''
     });
 })
 
 app.get('/entry', function (req, res) {
-
-    const url = 'https://api.payfast.co.za/process';
-
-    http.get(url, (response) => {
-        console.log(response.statusCode);
-
-        response.on('data', (data) => {
-            paymentData = JSON.parse(data);
-        })
-    });
 
     Candidate.find({}, (err, foundItems) => {
 
@@ -223,7 +105,7 @@ app.get('/entry', function (req, res) {
             res.render("afr/Entry_form", {
                 currentTitle: 'Inskrywingsvorm',
                 newListItems: foundItems,
-                currentPageTitle: 'Inskrywingsvorm',
+                currentPageTitle: 'INSKRYWINGSVORM',
                 currentPageName: 'entry'
             });
         }
@@ -274,7 +156,7 @@ app.get('/en/entry', (req, res) => {
             res.render("en/Entry_form", {
                 currentTitle: 'Entry form',
                 newListItems: foundItems,
-                currentPageTitle: 'Entry Form',
+                currentPageTitle: 'ENTRY FORM',
                 currentPageName: 'entry'
             });
         }
@@ -284,9 +166,9 @@ app.get('/en/entry', (req, res) => {
 app.post('/en/entry', (req, res) => {
 
     const childEntries = req.body.childEntries;
-    candidate = new Candidate({});
+    const candidate = new Candidate({});
 
-    for (let i = 1; i <= childEntries; i=i+4) {
+    for (let i = 1; i <= childEntries; i++) {
 
         const cName = req.body[`competitionName${i}`];
         const pName = req.body[`participantName${i}`];
@@ -297,7 +179,7 @@ app.post('/en/entry', (req, res) => {
         const pEmail = req.body[`participantEmail${i}`];
         const pNumber = req.body[`participantNumber${i}`];
 
-        const candidate = new Candidate.append({
+        candidate = new Candidate({
             competition: cName,
             name: pName,
             surname: pSurname,
@@ -305,12 +187,12 @@ app.post('/en/entry', (req, res) => {
             school: pSchool,
             province: pProvince,
             email: pEmail,
-            cell: pNumber
+            cell: pNumberntPageTitle
         });
 
         
     }
-    console.log(candidate);
+    console.log(candidate.name);
     res.redirect('/en/entry');
 
 });
@@ -324,7 +206,7 @@ app.get('/teams', (req, res) => {
             res.render("afr/teams", {
                 currentTitle: 'Spanne',
                 newListTeams: foundTeams,
-                currentPageTitle: 'Spanne form',
+                currentPageTitle: 'SPANNE VORM',
                 currentPageName: 'teams'
             });
         }
@@ -336,7 +218,7 @@ app.post('/teams', (req, res) => {
 
     const childEntries = req.body.childEntries;
 
-    for (let i = 1; i < childEntries; i++) {
+    for (let i = 1; i < childEntries; i=i+4) {
 
         const cName1 = req.body[`competitionName1${i}`];
         const pName1 = req.body[`participantName1${i}`];
@@ -426,7 +308,7 @@ app.get('/en/teams', (req, res) => {
             res.render("en/teams", {
                 currentTitle: 'Teams',
                 newListTeams: foundTeams,
-                currentPageTitle: 'Teams form',
+                currentPageTitle: 'TEAMS FORM',
                 currentPageName: 'teams'
             });
         }
@@ -438,7 +320,7 @@ app.post('/en/teams', (req, res) => {
 
     const childEntries = req.body.childEntries;
 
-    for (let i = 1; i < childEntries; i++) {
+    for (let i = 1; i < childEntries; i=i+4) {
 
         const cName1 = req.body[`competitionName1${i}`];
         const pName1 = req.body[`participantName1${i}`];
@@ -567,7 +449,7 @@ app.post('/en/delete', function (req, res) {
 app.get('/results', function (req, res) {
     res.render('afr/results', {
         currentTitle: 'Uitslae',
-        currentPageTitle: 'UItslae',
+        currentPageTitle: 'UITSLAE',
         currentPageName: 'results'
     });
 });
@@ -575,7 +457,7 @@ app.get('/results', function (req, res) {
 app.get('/en/results', function (req, res) {
     res.render('en/results', {
         currentTitle: 'Results',
-        currentPageTitle: 'Results',
+        currentPageTitle: 'RESULTS',
         currentPageName: 'results'
     });
 });
@@ -583,7 +465,7 @@ app.get('/en/results', function (req, res) {
 app.get('/info', function (req, res) {
     res.render('afr/Competition info', {
         currentTitle: 'Kompetisie Inligting',
-        currentPageTitle: 'Kompetisie Inligting',
+        currentPageTitle: 'KOMPETISIE INLIGTING',
         currentPageName: 'info'
     });
 });
@@ -591,15 +473,15 @@ app.get('/info', function (req, res) {
 app.get('/en/info', function (req, res) {
     res.render('en/Competition info', {
         currentTitle: 'Competition Info',
-        currentPageTitle: 'Competition Info',
+        currentPageTitle: 'COMPETITION INFO',
         currentPageName: 'info'
     });
 });
 
 app.get('/contact-us', function (req, res) {
     res.render('afr/Contact Us', {
-        currentTitle: 'Kontak Form',
-        currentPageTitle: 'Kontak Form',
+        currentTitle: 'Kontak Vorm',
+        currentPageTitle: 'KONTAK VORM',
         currentPageName: 'contact-us'
     });
 });
@@ -607,7 +489,7 @@ app.get('/contact-us', function (req, res) {
 app.get('/en/contact-us', function (req, res) {
     res.render('en/Contact Us', {
         currentTitle: 'Contact Form',
-        currentPageTitle: 'Contact Form',
+        currentPageTitle: 'CONTACT FORM',
         currentPageName: 'contact-us'
     });
 });
@@ -615,7 +497,7 @@ app.get('/en/contact-us', function (req, res) {
 app.get('/national-round', function (req, res) {
     res.render('afr/National-round', {
         currentTitle: 'Nasionale Rondte',
-        currentPageTitle: 'Nasionale Rondte',
+        currentPageTitle: 'NASIONALE RONDTE',
         currentPageName: 'National-round'
     });
 });
@@ -623,7 +505,7 @@ app.get('/national-round', function (req, res) {
 app.get('/en/national-round', function (req, res) {
     res.render('en/National-round', {
         currentTitle: 'National round',
-        currentPageTitle: 'National round',
+        currentPageTitle: 'NATIONAL ROUND',
         currentPageName: 'National-round'
     });
 });
@@ -633,28 +515,26 @@ app.get('/admin', function (req, res) {
 });
 
 
-app.post('/payment', (req, res) => {
-    // Anonymous test key. Replace with your key.
-    const SECRET_KEY = 'sk_test_e16d2c26gezaRKl906f46349f6f1';
-
+app.post('/payment', (req, res) => { //For the Yoco payment gateway
+    const secretKey = 'sk_test_e16d2c26gezaRKl906f46349f6f1'
     axios.post('https://online.yoco.com/v1/charges/', {
-            token: req.body.token,
-            amountInCents: 25000,
-            currency: 'ZAR',
-        }, {
-            headers: {
-                'X-Auth-Secret-Key': SECRET_KEY,
-            },
-        }, )
-        .then(response => {
-            res.send(response.data);
-        })
-        .catch(error => {
-            res.send(error.response.data);
-        })
+        token: req.body.token,
+        amountInCents: 24000,
+        currency: 'ZAR'
+    }, {
+        headers: {
+            'X-Auth-Secret-Key': secretKey
+        } 
+    })
+    .then(response => {
+        res.send(response.data);
+    })
+    .catch(error => {
+        res.send(error.response.data);
+    })
 })
 
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('App is running on port 3000');
+app.listen(port, () => {
+    console.log(`App is running on port: ${port}`);
 });

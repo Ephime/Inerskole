@@ -72,27 +72,15 @@ integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEUL
     });
 });
 
-//Makes the active page heading gold
-function activeGlow1() {
-    $('.page-title').removeClass('glow');
-    $('#page-title1').addClass('glow');
-}
-function activeGlow2() {
-    $('.page-title').removeClass('glow');
-    $('#page-title2').addClass('glow');
-}
-function activeGlow3() {
-    $('.page-title').removeClass('glow');
-    $('#page-title3').addClass('glow');
-}
-function activeGlow4() {
-    $('.page-title').removeClass('glow');
-    $('#page-title4').addClass('glow');
-}
-function activeGlow5() {
-    $('.page-title').removeClass('glow');
-    $('#page-title5').addClass('glow');
-}
+var center = document.getElementsByClassName("inactive");
+  for (let i = 0; i < center.length; i++) {
+    center[i].addEventListener("click", function(e){
+      for (let i = 0; i < center.length; i++) {
+         center[i].classList.remove('glow');
+         e.target.classList.add('glow');
+      }
+    });
+  }
 
 
 </script>

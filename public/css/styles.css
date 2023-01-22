@@ -14,6 +14,7 @@ body {
 .main {
     color: #242958;
     font-size: 18pt;
+    line-height: 1;
 }
 
 
@@ -197,10 +198,12 @@ nav.fixed-nav .Logo-image {
 
 #association-statement {
     position: absolute;
-    margin-top: 18rem;
-    margin-left: 40%;
-    color: #d1aa66;
+    margin-top: 15rem;
+    margin-left: 35%;
+    color: #eddec2;;
     font-size: 32pt;
+    text-decoration: underline rgba(237, 222, 194, 0.75);
+
 }
 
 /*Home Page */
@@ -249,7 +252,6 @@ a {
 }
 
 a:hover,
-a:active,
 button:hover,
 .button:hover {
     color: #d1aa66 !important;

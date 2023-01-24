@@ -278,11 +278,11 @@
 
         var form1wrapperCount = $('#wrapper').children('.childEntry').length;
 
-form1wrapperCount++;
+        form1wrapperCount++;
 
-$('#childEntries').val(form1wrapperCount);
+        $('#childEntries').val(form1wrapperCount);
 
-$('#wrapper').prepend(`\
+        $('#wrapper').prepend(`\
 <div class="wrapper childEntry">\
 <input type="text" name="competitionName1${form1wrapperCount}" class="entry-form" value="(ENG) - TEAMS" disabled >\
 <input type="text" name="participantName1${form1wrapperCount}" class="entry-form" placeholder="Naam">\
@@ -428,6 +428,10 @@ $('#wrapper').prepend(`\
     placeholder="Selfoon nommer"></div>\
 </div>`)
     }
+
+    //Sets the colour of the current page to be gold
+    $('.entry-form-page').css('color', '#d1aa66');
+    $('.entry-form-teams-page').css('color', '#d1aa66');
 </script>
 
 <%-include('../partials/en/footer')-%>

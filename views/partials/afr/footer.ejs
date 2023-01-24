@@ -72,15 +72,6 @@ integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEUL
     });
 });
 
-var center = document.getElementsByClassName("inactive");
-  for (let i = 0; i < center.length; i++) {
-    center[i].addEventListener("click", function(e){
-      for (let i = 0; i < center.length; i++) {
-         center[i].classList.remove('glow');
-         e.target.classList.add('glow');
-      }
-    })
-  }
 </script>
 
 </body>

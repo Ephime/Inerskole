@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("Public"));
 
-mongoose.connect('mongodb://127.0.0.1:27017/Candidates', {
+mongoose.connect('mongodb+srv://Morne:jdavyhAgR0IZE1o9@cluster0.rl2ocaq.mongodb.net/Candidates', {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })

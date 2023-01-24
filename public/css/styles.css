@@ -37,14 +37,22 @@ nav .Logo-image {
     position: absolute;
     transition: all linear .5s;
 }
-
-
-nav.fixed-nav .Logo-image {
+nav .Logo-image-invisible {
     width: 4rem;
     height: 4rem;
     position: static;
     margin-top: 0;
     margin-left: 0;
+    visibility: hidden;
+}
+
+
+nav.fixed-nav .Logo-image {
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    margin-top: -2rem;
+    margin-left: 1rem;
 
 }
 
@@ -118,8 +126,8 @@ nav.fixed-nav .Logo-image {
     }
 
     .light-dark-img {
-        width: 6rem;
-        height: 3rem;
+        width: 7rem;
+        height: 3.5rem;
         position: absolute;
         right: 0rem;
         top: 0rem;
@@ -207,6 +215,14 @@ nav.fixed-nav .Logo-image {
 }
 
 /*Home Page */
+.form-info-div{
+    border: 2px #000 solid;
+    padding: 1rem;
+}
+
+.form-info{
+    font-size: 16pt;
+}
 
 .twelve-excellence {
     width: 15rem;
@@ -214,7 +230,7 @@ nav.fixed-nav .Logo-image {
 }
 
 .nationals {
-    margin: auto 10px;
+    margin: 20px 0;
     font-size: 45pt;
 
 }
@@ -223,6 +239,8 @@ nav.fixed-nav .Logo-image {
     width: 40rem;
     height: 10rem;
 }
+
+
 
 /* Buttons, anchors adn hr */
 
@@ -423,8 +441,19 @@ td.grade {
     border-radius: 100%;
 
 }
+/* Results page */
 
+#result-page-nav{
+    position: absolute;
+    right: 1rem;
+    top: 50rem;
+    border: 2px #000 solid;
+    padding: 1rem;
+}
 
+#result-page-nav a{
+    color: #444d62;
+}
 
 
 /* Footer only */
